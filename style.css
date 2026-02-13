@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    min-height: 100vh;         
+    display: flex;
+    flex-direction: column;      
+    justify-content: center;    
+    align-items: center;        
+    font-family: Arial, sans-serif;
+    text-align: center;      
+}
+
+
+.button-box {
+    width: 400px;
+    height: 250px;
+    border: 2px solid black;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+#noBtn {
+    position: absolute;
+    left: 150px;
+    top: 100px;
+    transition: left 0.3s ease, top 0.3s ease;
+}
