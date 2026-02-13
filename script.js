@@ -1,25 +1,38 @@
+// ===============================
+// ELEMENTS
+// ===============================
 const noBtn = document.getElementById("noBtn");
 const box = document.getElementById("box");
 
-// No button movement (if it exists)
 const safeDistance = 100;
 const padding = 10;
 let isMoving = false;
 
+
+// ===============================
+// NO BUTTON RUNAWAY (index.html only)
+// ===============================
 if (noBtn && box) {
+
     box.addEventListener("mousemove", (e) => {
+
         if (isMoving) return;
 
         const btnRect = noBtn.getBoundingClientRect();
+
         const btnCenterX = btnRect.left + btnRect.width / 2;
         const btnCenterY = btnRect.top + btnRect.height / 2;
 
-        const distance = Math.hypot(
-            e.clientX - btnCenterX,
-            e.clientY - btnCenterY
+        const cursorX = e.clientX;
+        const cursorY = e.clientY;
+
+        const distance = Math.sqrt(
+            (cursorX - btnCenterX) ** 2 +
+            (cursorY - btnCenterY) ** 2
         );
 
         if (distance < safeDistance) {
+
             isMoving = true;
 
             const maxX = box.clientWidth - noBtn.offsetWidth - padding;
@@ -28,21 +41,59 @@ if (noBtn && box) {
             const randomX = Math.random() * maxX + padding;
             const randomY = Math.random() * maxY + padding;
 
-            noBtn.style.left = `${randomX}px`;
-            noBtn.style.top = `${randomY}px`;
+            noBtn.style.left = randomX + "px";
+            noBtn.style.top = randomY + "px";
 
-            setTimeout(() => (isMoving = false), 300);
+            setTimeout(() => {
+                isMoving = false;
+            }, 300);
         }
     });
 }
 
-// Yes button click — play audio and redirect immediately
-const yesBtn = document.getElementById("yesBtn");
-const kilig = document.getElementById("kilig");
 
-if (yesBtn && kilig) {
-    yesBtn.addEventListener("click", () => {
-        kilig.play(); // play audio immediately
-        window.location.href = yesBtn.parentElement.href; // redirect immediately
-    });
+// ===============================
+// YES PAGE EFFECTS (yes.html only)
+// ===============================
+window.addEventListener("load", () => {
+
+    const music = document.getElementById("bgMusic");
+
+    // If bgMusic exists, we are on yes.html
+    if (music) {
+
+        // 🎵 Play music
+        music.volume = 0.7;
+        music.play().catch(() => {});
+
+        // 💖 Start heart confetti
+        startHearts();
+    }
+});
+
+
+// ===============================
+// HEART CONFETTI
+// ===============================
+function startHearts() {
+    setInterval(() => {
+        createHeart();
+    }, 150); // smaller number = MORE hearts
+}
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
 }

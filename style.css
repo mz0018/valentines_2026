@@ -25,3 +25,25 @@ body {
     top: 100px;
     transition: left 0.3s ease, top 0.3s ease;
 }
+
+.button-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 20px;
+    animation: floatUp linear forwards;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+@keyframes floatUp {
+    to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
