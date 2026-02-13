@@ -85,3 +85,16 @@ function createHeart() {
     heart.remove();
   }, 6000);
 }
+
+const openRoseBtn = document.getElementById("openRoseBtn");
+const centralRose = document.getElementById("centralRose");
+
+openRoseBtn.addEventListener("click", () => {
+  // Show the rose container
+  centralRose.style.display = "block";
+
+  // Restart animations by forcing reflow:
+  centralRose.classList.remove("animate");
+  void centralRose.offsetWidth; // trigger reflow
+  centralRose.classList.add("animate");
+});
