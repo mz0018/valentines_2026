@@ -992,7 +992,7 @@ mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 0, 0, 0.35); /* red transparent overlay */
+  background: rgba(255, 0, 0, 0.151); /* red transparent overlay */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1001,14 +1001,42 @@ mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
 }
 
 .love-overlay h1 {
-  color: white;
   font-size: 4rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Dancing Script', cursive;
   text-align: center;
   letter-spacing: 5px;
-  text-shadow: 0 0 20px rgba(255,255,255,0.8),
-               0 0 40px rgba(255,0,0,0.9);
-  animation: glow 2s ease-in-out infinite alternate;
+
+  opacity: 0;
+  transform: scale(1.6);
+  filter: blur(15px);
+  color: #4da6ff; /* start blue */
+
+  animation: romanticReveal 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 4s; /* change delay here */
+}
+
+@keyframes romanticReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.6);
+    filter: blur(15px);
+    color: #4da6ff;
+  }
+
+  50% {
+    opacity: 0.7;
+    filter: blur(5px);
+    color: #7cc0ff;
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+    color: white;
+    text-shadow: 0 0 20px rgba(255,255,255,0.8),
+                 0 0 40px rgba(255,0,0,0.9);
+  }
 }
 
 @keyframes glow {
