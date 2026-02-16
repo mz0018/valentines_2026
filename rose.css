@@ -984,3 +984,40 @@ mask-image: linear-gradient(to top, transparent 40%, #079097 80%) !important;
 .not-loaded * {
   animation-play-state: paused !important;
 }
+
+
+.love-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.35); /* red transparent overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  pointer-events: none; /* allows interaction with flowers */
+}
+
+.love-overlay h1 {
+  color: white;
+  font-size: 4rem;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  letter-spacing: 5px;
+  text-shadow: 0 0 20px rgba(255,255,255,0.8),
+               0 0 40px rgba(255,0,0,0.9);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  to {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
