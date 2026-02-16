@@ -8,10 +8,16 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
 
-    /* Gradient background */
-    background: linear-gradient(135deg, #FFB6C1, #FFC0CB, #FF69B4, #FF1493);
-    background-size: 400% 400%;
-    animation: gradientMove 15s ease infinite;
+    background: 
+        linear-gradient(
+            rgba(255, 182, 193, 0.6),
+            rgba(255, 20, 147, 0.6)
+        ),
+        url("/img/imas.webp");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Smooth moving gradient */
